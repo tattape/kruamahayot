@@ -67,7 +67,7 @@ function TrackingModal({ Open, CloseModal, TrackingNo, Express }: Props) {
                                         <IoClose onClick={CloseModal} className='text-gray-600 font-semibold cursor-pointer text-2xl' />
                                     </Dialog.Title>
                                     <div className="mt-2 flex flex-col gap-2">
-                                        <input className='border outline-none rounded-lg p-3 text-md text-center font-bold' readOnly type="text" value={TrackingNo} />
+                                        <input className='border bg-slate-50 outline-none rounded-lg p-3 text-md text-center font-bold' readOnly type="text" value={TrackingNo} />
                                         <button
                                             type="button"
                                             className="font-semibold inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm text-blue-900 hover:bg-blue-200 outline-none transition-all"
