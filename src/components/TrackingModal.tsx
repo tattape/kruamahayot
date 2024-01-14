@@ -23,6 +23,8 @@ function TrackingModal({ Open, CloseModal, TrackingNo, Express }: Props) {
     const checkStatus = () => {
         if (Express === 'flash') {
             window.open('https://www.flashexpress.co.th/fle/tracking', '_blank')
+        } else if (Express === 'thai') {
+            window.open('https://track.thailandpost.co.th/', '_blank')
         }
     };
 

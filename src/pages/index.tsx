@@ -1,13 +1,14 @@
 // pages/index.js
 import React, { useState } from 'react';
 import { initializeApp } from 'firebase/app';
-import { getAnalytics } from "firebase/analytics";
 import { getFirestore, collection, query, where, orderBy, limit, getDocs } from 'firebase/firestore';
 import Image from 'next/image';
 import Logo from '../images/logo.png';
 import moment from 'moment-timezone';
 import TrackingModal from '@/components/TrackingModal';
-import { Dialog } from '@headlessui/react'
+import { AiOutlineMenu } from 'react-icons/ai';
+import { IoClose } from "react-icons/io5";
+import Sidebar from '@/components/sidebar/Sidebar';
 
 function HomePage() {
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -18,6 +19,7 @@ function HomePage() {
     const [isOpen, setIsOpen] = useState(false);
     const [Express, setExpress] = useState('');
     const [trackingNumber, setTrackingNumber] = useState('');
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     // Firebase configuration
     const firebaseConfig = {
@@ -33,7 +35,6 @@ function HomePage() {
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    // const analytics = getAnalytics(app);
 
     const handleSearch = async (e: any) => {
         e.preventDefault();
@@ -65,8 +66,18 @@ function HomePage() {
         setIsOpen(true)
     }
 
+    const toggleSidebar = () => {
+        setSidebarOpen(!sidebarOpen);
+    };
+
     return (
-        <div className='flex justify-center'>
+        <div className='flex flex-col items-center'>
+            <div className="flex justify-end w-full">
+                <button onClick={toggleSidebar} className="fixed top-5 right-5 z-50 text-gray-700">
+                    {!sidebarOpen ? <AiOutlineMenu size="24" /> : <IoClose size="34" />}
+                </button>
+                <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+            </div>
             <div className='container'>
                 <div className="flex flex-col justify-center items-center py-20 text-gray-800">
                     <Image src={Logo} width={200} height={200} alt='logo-kruamahayot' />
